@@ -1,0 +1,24 @@
+/* Home.css */
+.home__hero img {
+    width: 100%;
+    height: 50vh;
+    /* Adjust this value as needed */
+    object-fit: cover;
+    /* This will ensure that the image covers the area without distorting the aspect ratio */
+}
+
+@media (min-width: 768px) {
+    .home__hero img {
+        width: 75%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .home__hero img {
+        width: 50%;
+    }
+}
+
+.home__content {
+    padding: 20px;
+}

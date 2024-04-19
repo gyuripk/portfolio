@@ -1,3 +1,12 @@
+Your codebase needs to be well documented. Be sure to include comments in your code. You need to provide a README file with at least the following:
+
+1. The purpose of the application.
+2. A description of how to contribute to the development of the application
+3. A list of features
+4. A list of dependencies and how to install them
+5. A description of the applications architecture
+6. How to report issues
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
