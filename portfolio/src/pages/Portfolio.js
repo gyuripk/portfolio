@@ -1,7 +1,14 @@
-export default function Portfolio() {
+import React from "react";
+import GitHubRepos from "../components/GitHubRepos";
+import YouTubeVideos from "../components/YouTubeVideos";
+
+function Portfolio() {
   return (
     <div>
-      <h1>Portfolio</h1>
+      <GitHubRepos />
+      <YouTubeVideos />
     </div>
   );
 }
+
+export default Portfolio;
