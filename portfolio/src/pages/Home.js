@@ -1,9 +1,9 @@
+import { useState, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-balham.css";
-import { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Badge } from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import heroImage from "../images/Gyuri.jpg";
 import "./Home.css";

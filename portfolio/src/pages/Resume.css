@@ -1,0 +1,17 @@
+.resume {
+    width: 80%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+}

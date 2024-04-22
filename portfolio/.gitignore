@@ -23,6 +23,8 @@
 .env.production.local
 # Ignore vscode settings
 .vscode
+# Ignore .vscode settings for debugging
+.vscode/launch.json
 # Ignore all .log files
 *.log*
 # Ignore swp swo files that can be created by vim
