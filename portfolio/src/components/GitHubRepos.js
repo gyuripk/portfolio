@@ -84,8 +84,17 @@ function GitHubRepos() {
     fetchData();
   }, []);
 
+  //   const columnDefs = [
+  //     { headerName: "Name", field: "name" },
+  //     { headerName: "Description", field: "description" },
+  //     {
+  //       headerName: "URL",
+  //       field: "url",
+  //       cellRenderer: "hyperlinkCellRenderer",
+  //     },
+  //   ];
   const columnDefs = [
-    { headerName: "Name", field: "name" },
+    { headerName: "Name", field: "name", cellRenderer: "nameLinkRenderer" },
     { headerName: "Description", field: "description" },
     {
       headerName: "URL",
@@ -95,6 +104,14 @@ function GitHubRepos() {
   ];
 
   const frameworkComponents = {
+    nameLinkRenderer: function NameLinkRenderer(props) {
+      console.log("Name link:", props.data.html_url); // Name 링크 로깅
+      return (
+        <a href={props.data.html_url} rel="noopener noreferrer" target="_blank">
+          {props.value}
+        </a>
+      );
+    },
     hyperlinkCellRenderer: function HyperlinkCellRenderer(props) {
       console.log("URL:", props.value); // URL 로깅
       return (
@@ -104,6 +121,16 @@ function GitHubRepos() {
       );
     },
   };
+  //   const frameworkComponents = {
+  //     hyperlinkCellRenderer: function HyperlinkCellRenderer(props) {
+  //       console.log("URL:", props.value); // URL 로깅
+  //       return (
+  //         <a href={props.value} rel="noopener noreferrer" target="_blank">
+  //           {props.value}
+  //         </a>
+  //       );
+  //     },
+  //   };
 
   return (
     <div className="ag-theme-balham" style={{ height: "300px", width: "100%" }}>
