@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
 function MarkdownViewer({ files }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -31,7 +32,15 @@ function MarkdownViewer({ files }) {
         ))}
       </select>
       {selectedFile && (
-        <div dangerouslySetInnerHTML={{ __html: markdownData }} />
+        <ReactMarkdown
+          urlTransform={(uri) =>
+            uri.startsWith("/")
+              ? `https://raw.githubusercontent.com/rbfl6418/rbfl6418.github.io/main${uri}`
+              : uri
+          }
+        >
+          {markdownData}
+        </ReactMarkdown>
       )}
     </div>
   );
