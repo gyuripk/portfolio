@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import { Button, Badge } from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function MarkdownViewer({ files }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -20,6 +22,7 @@ function MarkdownViewer({ files }) {
   return (
     <div>
       <select
+        class="form-select"
         onChange={(e) =>
           setSelectedFile(files.find((file) => file.name === e.target.value))
         }
