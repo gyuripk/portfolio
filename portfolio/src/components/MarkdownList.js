@@ -30,8 +30,8 @@ function MarkdownList() {
   }, []);
 
   return (
-    <div>
-      <MarkdownViewer files={files} /> {/* Use the MarkdownViewer component */}
+    <div className="container">
+      <MarkdownViewer files={files} />
     </div>
   );
 }
