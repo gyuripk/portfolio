@@ -101,7 +101,9 @@ const RepositorySearch = () => {
   const gridHeight = `${results.length * 32 + 32}px`;
 
   return (
-    <div>
+    <div class="container">
+      <h1>Searach GitHub Repositories</h1>
+
       <input
         type="text"
         value={input}
@@ -110,7 +112,7 @@ const RepositorySearch = () => {
       />
       {input.length > 0 ? (
         results.length > 0 ? (
-          <div>
+          <div class="container">
             <h1>My GitHub Repositories</h1>
             <Badge color="success">{results.length}</Badge> Repositories found
             <div

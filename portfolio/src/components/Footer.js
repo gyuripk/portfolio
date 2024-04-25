@@ -1,47 +1,10 @@
-// import React from "react";
-
-// export function Footer() {
-//   return (
-//     <footer>
-//       <p>© 2024 MyWebsite. All rights reserved.</p>
-//       <p>Contact us: email@example.com | +1234567890</p>
-//       <ul>
-//         <li>
-//           <a
-//             href="https://www.facebook.com/yourpage"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             <i className="fab fa-facebook"></i> Facebook
-//           </a>
-//         </li>
-//         <li>
-//           <a
-//             href="https://www.twitter.com/yourusername"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             <i className="fab fa-twitter"></i> Twitter
-//           </a>
-//         </li>
-//         <li>
-//           <a
-//             href="https://www.linkedin.com/in/yourprofile"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             <i className="fab fa-linkedin"></i> LinkedIn
-//           </a>
-//         </li>
-//       </ul>
-//     </footer>
-//   );
-// }
 import React from "react";
+import ContactForm from "./ContactForm";
 
 export function Footer() {
   return (
     <footer>
+      <ContactForm />
       <p>© 2024 MyWebsite. All rights reserved.</p>
       <p>Contact us: email@example.com | +1234567890</p>
       <ul>
