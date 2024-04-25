@@ -1,0 +1,46 @@
+/* SpotifyPlaylist.css */
+.playlist-container {
+    background-color: #121212;
+    color: white;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    max-height: 600px;
+    /* Adjust this value to your needs */
+    overflow-y: auto;
+    text-align: left;
+}
+
+.playlist-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.track-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.track-item:hover {
+    background-color: #282828;
+}
+
+.album-cover {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+}
+
+.track-name {
+    flex-grow: 1;
+}
+
+.artist-name {
+    color: #b3b3b3;
+}
