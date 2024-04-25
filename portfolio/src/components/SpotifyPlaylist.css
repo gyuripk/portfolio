@@ -1,29 +1,41 @@
-/* SpotifyPlaylist.css */
+
 .playlist-container {
     background-color: #121212;
     color: white;
     padding: 20px;
     font-family: Arial, sans-serif;
-    max-height: 600px;
-    /* Adjust this value to your needs */
+    max-height: 400px;
+    /* max-width: 50%; */
     overflow-y: auto;
     text-align: left;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+     /* Hide scrollbar for Chrome, Safari and Opera */ 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .playlist-title {
     font-size: 2em;
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .track-list {
     list-style-type: none;
     padding: 0;
+    width: 100%;
 }
 
 .track-item {
-    display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 30px !important;
     cursor: pointer;
 }
 
@@ -32,9 +44,12 @@
 }
 
 .album-cover {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     margin-right: 20px;
+    border-radius: 5px;
+    margin-top: 6px;
+    margin-bottom: 6px;
 }
 
 .track-name {
@@ -44,3 +59,77 @@
 .artist-name {
     color: #b3b3b3;
 }
+
+/* SpotifyPlaylist.css */
+
+.playlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    /* Or your preferred spacing */
+}
+
+.playlist-info {
+    flex-grow: 1;
+}
+
+.playlist-title {
+    font-size: 24px;
+    /* Adjust to your preference */
+    margin: 0;
+}
+
+.playlist-details {
+    font-size: 14px;
+    /* Adjust to your preference */
+    color: #b3b3b3;
+    /* Subtext color for additional details */
+}
+
+.playlist-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Space between buttons and icons */
+}
+
+.btn-success {
+    background-color: #1db954;
+    /* Spotify green */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 500px;
+    /* Circular edges */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.bi-heart-fill,
+.bi-three-dots {
+    color: white;
+    font-size: 20px;
+    /* Adjust to your preference */
+    cursor: pointer;
+}
+
+.bi-heart-fill:hover,
+.bi-three-dots:hover {
+    color: #1db954;
+    /* Hover effect */
+}
+
+.playlist-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: rgba(86, 84, 84, 0.4);/* 50% transparency */
+  border-radius: 10px;
+}
+
+.playlist-covers {
+  display: flex;
+  margin-right: 20px;
+}
+

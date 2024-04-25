@@ -5,8 +5,6 @@ export default function About() {
   const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
   const playlistId = "1naYaroarJnaG8LsTbRLEa";
-  console.log("Client ID:", process.env.REACT_APP_SPOTIFY_CLIENT_ID);
-  console.log("Base64:", btoa(clientId + ":" + clientSecret));
 
   return (
     <div>
