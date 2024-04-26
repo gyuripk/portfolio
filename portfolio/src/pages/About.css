@@ -1,0 +1,69 @@
+.about-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+}
+
+.about-text {
+    max-width: 60%;
+}
+
+.about-image {
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+    line-height: 0;
+    /* Remove space below image */
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* For responsive design */
+@media (max-width: 768px) {
+    .about-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-text {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .about-image {
+        width: 50%;
+    }
+}
+
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    /* 이미지는 1부분, 텍스트는 2부분의 공간을 차지합니다 */
+    gap: 20px;
+    /* 이미지와 텍스트 사이의 간격 */
+    align-items: center;
+    margin: 20px;
+}
+
+.image-container {
+    /* 이미지 컨테이너에 추가적인 스타일링이 필요하다면 여기에 작성합니다 */
+}
+
+.image {
+    width: 100%;
+    /* 이미지가 컨테이너에 꽉 차도록 설정합니다 */
+    height: auto;
+    /* 이미지의 비율을 유지합니다 */
+    border-radius: 10px;
+    /* 필요에 따라 이미지의 모서리를 둥글게 합니다 */
+}
+
+.text-container {
+    /* 텍스트 컨테이너에 추가적인 스타일링이 필요하다면 여기에 작성합니다 */
+}
