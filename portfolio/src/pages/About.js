@@ -39,7 +39,7 @@ export default function About() {
         </div>
 
         <div className="image-container">
-          <img src={Surfing} className="image" />
+          <img src={Bicycle} className="image" />
         </div>
         <div className="text-container">
           <h2>Planning Experience in a wide range of fields</h2>
@@ -79,8 +79,6 @@ export default function About() {
         </div>
 
         <div className="image-container">
-          <h2>Music is My Life</h2>
-
           <img src={Guitar} className="image" />
         </div>
         <SpotifyPlaylist

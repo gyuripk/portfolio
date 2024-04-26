@@ -44,26 +44,23 @@
 .about-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    /* 이미지는 1부분, 텍스트는 2부분의 공간을 차지합니다 */
     gap: 20px;
-    /* 이미지와 텍스트 사이의 간격 */
     align-items: center;
     margin: 20px;
+    padding-top: 80px;
+    padding-bottom: 100px;
 }
 
 .image-container {
-    /* 이미지 컨테이너에 추가적인 스타일링이 필요하다면 여기에 작성합니다 */
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .image {
     width: 100%;
-    /* 이미지가 컨테이너에 꽉 차도록 설정합니다 */
     height: auto;
-    /* 이미지의 비율을 유지합니다 */
     border-radius: 10px;
-    /* 필요에 따라 이미지의 모서리를 둥글게 합니다 */
 }
 
 .text-container {
-    /* 텍스트 컨테이너에 추가적인 스타일링이 필요하다면 여기에 작성합니다 */
 }

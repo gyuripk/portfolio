@@ -48,33 +48,54 @@ function MarkdownViewer({ files }) {
   ];
 
   // Calculate grid height based on row count
-  const gridHeight = `${transformedFiles.length * 25 + 25}px`;
+  const gridHeight = `${transformedFiles.length * 34.4}px`;
 
   return (
-    <div>
+    <div
+      className="container"
+      style={{
+        marginTop: "2%",
+        marginBottom: "5%",
+        maxWidth: "1000px",
+      }}
+    >
       <div
-        className="ag-theme-balham"
+        className="ag-theme-alpine"
         style={{ height: gridHeight, width: "100%", marginBottom: "50px" }}
       >
         <AgGridReact
           rowData={transformedFiles}
           columnDefs={columnDefs}
           pagination={true}
-          paginationPageSize={6}
+          paginationPageSize={5}
           onRowClicked={(event) => setSelectedFile(event.data)}
+          defaultColDef={{
+            cellStyle: { textAlign: "left" },
+          }}
         />
       </div>
-      {/* <MarkdownDetails files={selectedFile} /> */}
       {selectedFile && (
-        <ReactMarkdown
-          urlTransform={(uri) =>
-            uri.startsWith("/")
-              ? `https://raw.githubusercontent.com/rbfl6418/rbfl6418.github.io/main${uri}`
-              : uri
-          }
+        <div
+          style={{
+            padding: "10%",
+            textAlign: "left",
+            borderRadius: "10px",
+            boxShadow: "0 4px 8px rgba(95, 91, 91, 0.511)",
+          }}
         >
-          {markdownData}
-        </ReactMarkdown>
+          <h1 style={{ color: "#ff6600" }}>
+            Topic: {selectedFile.nameWithoutDate}
+          </h1>
+          <ReactMarkdown
+            urlTransform={(uri) =>
+              uri.startsWith("/")
+                ? `https://raw.githubusercontent.com/rbfl6418/rbfl6418.github.io/main${uri}`
+                : uri
+            }
+          >
+            {markdownData}
+          </ReactMarkdown>
+        </div>
       )}
     </div>
   );

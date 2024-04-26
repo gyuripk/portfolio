@@ -1,24 +1,76 @@
 /* Home.css */
 .home__hero img {
     width: 100%;
-    height: 50vh;
-    /* Adjust this value as needed */
     object-fit: cover;
     /* This will ensure that the image covers the area without distorting the aspect ratio */
 }
 
 @media (min-width: 768px) {
     .home__hero img {
-        width: 75%;
+        width: 100%;
     }
 }
 
 @media (min-width: 1024px) {
     .home__hero img {
-        width: 50%;
+        width: 100%;
     }
 }
 
-.home__content {
+.home__hero {
+    position: relative;
+    width: 100%;
+}
+
+.home__overlay {
+    position: absolute;
+    top: 47%;
+    left: 38%;
+    transform: translate(-50%, -50%);
+    max-width: 800px;
+    text-align: center;
+    z-index: 10;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.home__hero img {
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .home__hero img {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .home__hero img {
+        width: 100%;
+    }
+}
+
+.hero-content {
+    text-align: left;
     padding: 20px;
+}
+
+.hero-content h1 {
+    color: #ff6600;
+    font-size: 5rem;
+    text-align: left;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    color: #29691e;
+    font-weight: 300;
+    text-align: left;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    text-align: left;
+    font-weight: 300;
 }

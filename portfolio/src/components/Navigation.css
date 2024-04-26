@@ -1,32 +1,39 @@
 /* Navigation.css */
-nav {
+
+.nav-links,
+.social-icons {
     display: flex;
-    justify-content: space-around;
-    background-color: #115a13;
-    padding: 15px 0;
+    align-items: center;
+    margin: 0;
 }
 
-nav ul {
+.nav-links li,
+.social-icons li {
     list-style: none;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
 }
 
-nav ul li {
-    color: #fff;
-}
-
-nav ul li a {
-    color: #fff;
+.nav-links li a,
+.social-icons li a {
     text-decoration: none;
+    padding: 0 15px;
+    color: #29691e;
     font-size: 1.2em;
 }
 
-nav ul li a.active {
-    color: #ddd;
+.nav-links li a.active {
+    color: #ff6600;
 }
 
-nav ul li a:hover {
-    color: #ddd;
+.nav-links li a:hover,
+.social-icons li a:hover {
+    color: #ff6600;
+}
+
+.social-icons {
+    margin-left: auto;
+}
+
+.social-icons li a {
+    color: #29691e;
+    font-size: 1.5em;
 }

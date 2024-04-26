@@ -50,3 +50,9 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+/* remove AdGrid a tag style  */
+.ag-cell a {
+    text-decoration: none;
+    color: inherit;
+} 

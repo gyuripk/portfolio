@@ -1,30 +1,29 @@
-import { useState, useEffect } from "react";
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-balham.css";
-import { Button, Badge } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import heroImage from "../images/Gyuri4.png";
+import ContactForm from "../components/ContactForm";
 
-import heroImage from "../images/Gyuri.jpg";
 import "./Home.css";
 
 export default function Home() {
   return (
     <div className="home">
       <div className="home__hero">
+        <div className="home__overlay">
+          <div className="hero-content">
+            <p>&nbsp;&nbsp;&nbsp;Hi, I'm</p>
+            <h1>Gyuri Park</h1>
+            <h2>Web Developer</h2>
+            <p>
+              I'm a web developer, currently living in Brisbane. I enjoy
+              building everything from small business sites to rich interactive
+              web apps. If you are a business seeking a web presence or an
+              employer looking to hire, you can get in touch with me here.
+            </p>
+          </div>
+        </div>
         <img src={heroImage} alt="Hero" />
       </div>
-      <div className="home__content">
-        <h1>Welcome to Gyuri's Website</h1>
-        <p>
-          This is a great place to introduce your company or project and
-          describe what you do.
-        </p>
-        <p>
-          This text could be a brief introduction to your website or a company
-          profile.
-        </p>
-      </div>
+      <ContactForm />
     </div>
   );
 }

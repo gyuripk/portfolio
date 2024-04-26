@@ -4,7 +4,7 @@ import "./Resume.css";
 export default function Resume() {
   return (
     <div className="container">
-      <div className="resume" style={{ marginTop: "60px" }}>
+      <div className="resume">
         <div className="work-experience">
           <h2>Work Experience</h2>
           <div className="job">
@@ -125,7 +125,7 @@ export default function Resume() {
           </div>
         </aside>
       </div>
-      <div className="resume" style={{ marginTop: "60px" }}>
+      <div className="resume">
         <div className="work-experience">
           <h3>Activities</h3>
           <div className="job">

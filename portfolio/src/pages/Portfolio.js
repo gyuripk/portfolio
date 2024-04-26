@@ -7,11 +7,11 @@ function Portfolio() {
   return (
     <div>
       <div>
-        <h1>My Portfolio</h1>
+        <YouTubeVideos />
+      </div>
+      <div>
         <RepositorySearch />
       </div>
-      <YouTubeVideos />
-      <h2>My Blog Posts</h2>
       <MarkdownList />
     </div>
   );

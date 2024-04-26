@@ -31,6 +31,7 @@ function MarkdownList() {
 
   return (
     <div className="container">
+      <h2>Blog Posts</h2>
       <MarkdownViewer files={files} />
     </div>
   );

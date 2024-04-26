@@ -25,14 +25,18 @@ function YouTubePlaylistVideos() {
   }, []);
 
   return (
-    <div>
-      <h1>My YouTube Playlist Videos</h1>
+    <div className="container" style={{ marginTop: "5%", marginBottom: "5%" }}>
+      <h2>Checkout my works!</h2>
       {videos.map((video) => (
         <div key={video.snippet.resourceId.videoId}>
-          <h2>{video.snippet.title}</h2>
+          <h4>{video.snippet.title}</h4>
           <iframe
-            width="560"
-            height="315"
+            style={{
+              width: "700px",
+              height: "425px",
+              borderRadius: "15px",
+              boxShadow: "0px 0px 10px 3px rgba(0,0,0,0.2)",
+            }}
             src={`https://www.youtube.com/embed/${video.snippet.resourceId.videoId}`}
             title={video.snippet.title}
             frameBorder="0"

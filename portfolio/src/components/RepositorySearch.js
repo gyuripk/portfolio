@@ -3,35 +3,43 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Badge } from "reactstrap";
+import { Button, Badge, Form, Input } from "reactstrap";
 
 const RepositorySearch = () => {
   const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
+  const [filteredRepositories, setFilteredRepositories] = useState([]);
   const githubUsername = "rbfl6418";
 
   const fetchRepositories = async () => {
-    const response = await fetch(
-      `https://api.github.com/search/repositories?q=${input}+user:${githubUsername}`,
-      {
+    try {
+      const response = await fetch(`https://api.github.com/user/repos`, {
         headers: {
           Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
         },
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    );
-    console.log(
-      `https://api.github.com/search/code?q=${input}+in:file+repo:${githubUsername}`
-    );
-    const data = await response.json();
-    console.log(data);
-    setResults(data.items);
+      const data = await response.json();
+      console.log(data);
+      setResults(data);
+      setFilteredRepositories(data);
+    } catch (error) {
+      console.error(
+        "An error occurred while fetching the repositories:",
+        error
+      );
+    }
   };
 
-  useEffect(() => {
-    if (input) {
-      fetchRepositories();
-    }
-  }, [input]);
+  const handleSearch = async () => {
+    // Filter repositories based on input
+    const newFilteredRepositories = results.filter((repo) =>
+      repo.name.toLowerCase().includes(input.toLowerCase())
+    );
+    setFilteredRepositories(newFilteredRepositories);
+  };
 
   const columnDefs = [
     {
@@ -63,17 +71,10 @@ const RepositorySearch = () => {
       cellRenderer: "cellRendererFramework",
       flex: 1,
     },
-    {
-      headerName: "URL",
-      field: "url",
-      cellRenderer: "hyperlinkCellRenderer",
-      flex: 1,
-    },
   ];
 
   const components = {
     nameLinkRenderer: function NameLinkRenderer(props) {
-      console.log("Name link:", props.data.html_url);
       return (
         <a href={props.data.html_url} rel="noopener noreferrer" target="_blank">
           {props.value}
@@ -81,7 +82,6 @@ const RepositorySearch = () => {
       );
     },
     hyperlinkCellRenderer: function HyperlinkCellRenderer(props) {
-      console.log("URL:", props.value);
       return (
         <a href={props.data.html_url} rel="noopener noreferrer" target="_blank">
           {props.value}
@@ -97,39 +97,74 @@ const RepositorySearch = () => {
     ),
   };
 
+  useEffect(() => {
+    fetchRepositories();
+  }, []);
+
   // Calculate grid height based on row count
-  const gridHeight = `${results.length * 32 + 32}px`;
+  const gridHeight = `${filteredRepositories.length * 43 + 50}px`;
 
   return (
-    <div class="container">
-      <h1>Searach GitHub Repositories</h1>
-
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Search for repositories..."
-      />
-      {input.length > 0 ? (
-        results.length > 0 ? (
-          <div class="container">
-            <h1>My GitHub Repositories</h1>
-            <Badge color="success">{results.length}</Badge> Repositories found
-            <div
-              className="ag-theme-balham"
-              style={{ height: gridHeight, width: "100%" }}
-            >
-              <AgGridReact
-                rowData={results}
-                columnDefs={columnDefs}
-                components={components}
-              />
+    <div className="container">
+      <div
+        className="container"
+        style={{
+          marginTop: "5%",
+          marginBottom: "5%",
+          maxWidth: "1000px",
+        }}
+      >
+        <h2>GitHub Repositories</h2>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "2%",
+            marginBottom: "2%",
+          }}
+        >
+          <Form style={{ marginRight: "10px" }}>
+            <Input
+              type="text"
+              style={{ fontSize: "18px", width: "300px" }}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Search for repositories..."
+            />
+          </Form>
+          <Button
+            style={{ maxWidth: "100px" }}
+            variant="primary"
+            onClick={handleSearch}
+          >
+            Search
+          </Button>
+        </div>
+        <div>
+          {filteredRepositories.length > 0 && (
+            <div>
+              <Badge color="primary" style={{ margin: "20px 10px" }}>
+                {filteredRepositories.length}
+              </Badge>
+              Repositories found
+              <div
+                className="ag-theme-alpine"
+                style={{ height: gridHeight, width: "100%" }}
+              >
+                <AgGridReact
+                  rowData={filteredRepositories}
+                  columnDefs={columnDefs}
+                  components={components}
+                  defaultColDef={{
+                    cellStyle: { textAlign: "left" },
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        ) : (
-          <div>No results found</div>
-        )
-      ) : null}
+          )}
+        </div>
+      </div>
     </div>
   );
 };

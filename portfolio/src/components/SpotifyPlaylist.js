@@ -47,10 +47,10 @@ export default function SpotifyPlaylist({
 
   return (
     <div className="container">
+      <h2>Music is My Life</h2>
       <div className="playlist-container">
         <div className="playlist-header">
           <div className="playlist-covers">
-            {/* 앨범 커버 이미지를 가져와서 렌더링 */}
             <img
               src={playlist.images[0].url}
               style={{ height: "200px", borderRadius: "30px", padding: "20px" }}

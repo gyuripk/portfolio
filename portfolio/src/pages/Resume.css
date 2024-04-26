@@ -1,5 +1,4 @@
 /* Resume.css */
-/* 모든 텍스트를 왼쪽 정렬 */
 .work-experience h2,
 .work-experience h3,
 .work-experience h4,
@@ -14,14 +13,12 @@
   gap: 20px;
   font-family: Arial, sans-serif;
   max-width: 1000px;
-  margin: 0 auto;
-        /* 상하 마진 0, 좌우 마진 auto로 중앙 정렬 */
+  margin: 60px auto;
   border-radius: 10px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 h2,h3 {
-  /* background-color: #000; */
   color: #086a0a;
   padding: 5px;
   font-weight: bolder;
@@ -32,7 +29,6 @@ h5,h6{
 }
 
 .work-experience {
-  /* background-color: #eee; */
   padding: 35px;
 }
 
@@ -42,6 +38,8 @@ h5,h6{
 
 .sidebar {
   background-color: #eee;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .skills {
@@ -53,43 +51,33 @@ h5,h6{
   text-align: left;
 }
 
-/* 각 항목에 대한 스타일은 이미지와 일치하도록 추가 조정이 필요할 수 있습니다. */
-
-ul {
+.work-experience ul {
     list-style: none;
-    /* 기본 리스트 스타일 제거 */
+    /* remove the default ul style */
     padding-left: 1.1em;
-    /* 기본 패딩 제거 */
 }
 
-li {
+.work-experience li {
     position: relative;
     padding-left: 1.2em;
-    /* 충분한 공간 확보 */
 }
 
-li::before {
+.work-experience li::before {
     content: "•";
-    /* 커스텀 리스트 마커 */
+    /* custom list marker */
     position: absolute;
     left: 0;
-    /* 항목 왼쪽에 마커를 위치시킴 */
 }
 
-/* 이력서의 타이틀 부분에 대한 스타일링 */
 .resume-title {
   font-size: 24px;
   font-weight: bold;
 }
 
-/* 이력서의 세부정보(회사명, 기간 등)에 대한 스타일링 */
 .resume-detail {
   font-size: 12px;
 }
 
-/* 여기에 추가적인 세부 스타일링이 들어갈 수 있습니다. */
-
-/* 반응형 디자인을 위한 미디어 쿼리 */
 @media (max-width: 768px) {
   .resume {
     grid-template-columns: 1fr;
@@ -99,15 +87,12 @@ li::before {
 .job-title-and-date {
     display: flex;
     justify-content: space-between;
-    /* 요소들을 양끝으로 정렬 */
     align-items: baseline;
-    /* 텍스트 기준선에 맞추어 정렬 */
 }
 
 .job-date {
     margin-left: auto;
     color: rgb(102, 98, 98);
-    /* 날짜를 오른쪽으로 이동 */
 }
 
 .tasks{
