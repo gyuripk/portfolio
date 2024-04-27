@@ -17,13 +17,13 @@ const SearchBar = ({ input, setInput, onSearch }) => {
         <Input
           type="text"
           value={input}
-          onChange={handleInputChange}
+          onChange={handleInputChange} //event handler
           style={{ fontSize: "18px", width: "300px" }}
           placeholder="Search for repositories..."
         />
       </Form>
       <Button
-        onClick={handleSearchClick}
+        onClick={handleSearchClick} //event handler
         style={{ maxWidth: "100px" }}
         variant="primary"
       >

@@ -141,7 +141,7 @@ function ContactForm() {
                 id="name"
                 placeholder="Enter your name"
                 value={name}
-                onChange={handleNameChange}
+                onChange={handleNameChange} //event handler
               />
               {nameError && <div className="error">{nameError}</div>}
             </FormGroup>
@@ -153,7 +153,7 @@ function ContactForm() {
                 id="email"
                 placeholder="Enter your email"
                 value={email}
-                onChange={handleEmailChange}
+                onChange={handleEmailChange} //event handler
               />
               {emailError && <div className="error">{emailError}</div>}
             </FormGroup>
@@ -165,7 +165,7 @@ function ContactForm() {
                 id="message"
                 placeholder="Enter your message"
                 value={message}
-                onChange={handleMessageChange}
+                onChange={handleMessageChange} //event handler
               />
               {messageError && <div className="error">{messageError}</div>}
             </FormGroup>

@@ -112,7 +112,7 @@ const RepositorySearch = () => {
             <SearchBar
               input={input}
               setInput={setInput}
-              onSearch={handleSearch}
+              onSearch={handleSearch} // event handler for search button
             />
           </div>
           {/* results table */}

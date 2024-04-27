@@ -112,15 +112,17 @@ export default function Resume() {
           <div className="skills">
             <h3>Skills</h3>
             <ul>
-              <li>Proactivity</li>
-              <li>Consultive Sales</li>
-              <li>Persuasion</li>
-              <li>Adaptability</li>
-              <li>Employee Relations</li>
-              <li>Inquisitive </li>
-              <li>Willingness to learn</li>
-              <li>Always seeking improvement</li>
-              <li>Time management</li>
+              <li>Java</li>
+              <li>JavaScript</li>
+              <li>C#</li>
+              <li>Python</li>
+              <li>Spring</li>
+              <li>Android App</li>
+              <li>Project Jupyter</li>
+              <li>Apache</li>
+              <li>React</li>
+              <li>HTML</li>
+              <li>CSS </li>
             </ul>
           </div>
         </aside>
