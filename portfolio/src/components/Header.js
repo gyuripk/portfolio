@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigation } from "./Navigation";
+import SocialIcon from "./SocialIcon";
 
 export function Header() {
   return (
@@ -21,36 +22,18 @@ export function Header() {
       </span>
       <Navigation />
       <ul className="social-icons">
-        <li>
-          <a
-            href="https://github.com/rbfl6418"
-            className="me-3"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="bi bi-github"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.linkedin.com/in/gyuri-park-285a95209/"
-            className="me-3"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="bi bi-linkedin"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://rbfl6418.github.io/"
-            className="me-3"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="bi bi-pencil-square"></i>
-          </a>
-        </li>
+        <SocialIcon href="https://github.com/rbfl6418" className="me-3">
+          <i className="bi bi-github"></i>
+        </SocialIcon>
+        <SocialIcon
+          href="https://www.linkedin.com/in/gyuri-park-285a95209/"
+          className="me-3"
+        >
+          <i className="bi bi-linkedin"></i>
+        </SocialIcon>
+        <SocialIcon href="https://rbfl6418.github.io/" className="me-3">
+          <i className="bi bi-pencil-square"></i>
+        </SocialIcon>
       </ul>
     </header>
   );

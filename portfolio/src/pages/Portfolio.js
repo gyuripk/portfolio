@@ -6,12 +6,8 @@ import RepositorySearch from "../components/RepositorySearch";
 function Portfolio() {
   return (
     <div>
-      <div>
-        <YouTubeVideos />
-      </div>
-      <div>
-        <RepositorySearch />
-      </div>
+      <YouTubeVideos />
+      <RepositorySearch />
       <MarkdownList />
     </div>
   );

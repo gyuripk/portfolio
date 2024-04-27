@@ -17,25 +17,23 @@ import {
 function ContactForm() {
   const [result, showResult] = useState(false);
 
-  const sendEmail = (event) => {
+  const sendEmail = async (event) => {
     event.preventDefault();
 
-    emailjs
-      .sendForm(
+    try {
+      const result = await emailjs.sendForm(
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
         process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         event.target,
         process.env.REACT_APP_EMAILJS_API_KEY
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          showResult(true);
-        },
-        (error) => {
-          console.log(error.text);
-        }
       );
+
+      console.log(result.text);
+      showResult(true);
+    } catch (error) {
+      console.log(error.text);
+    }
+
     event.target.reset();
   };
 
@@ -74,7 +72,7 @@ function ContactForm() {
               <Label for="name">Name</Label>
               <Input
                 type="text"
-                name="sender_name"
+                name="from_name"
                 id="name"
                 placeholder="Enter your name"
               />

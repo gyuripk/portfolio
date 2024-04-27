@@ -1,9 +1,7 @@
 import React from "react";
 import SpotifyPlaylist from "../components/SpotifyPlaylist";
 import "./About.css";
-import { Container } from "reactstrap";
 import Gyuri from "../images/Gyuri.jpg";
-import Surfing from "../images/Surfing.jpg";
 import Surfing2 from "../images/Surfing2.jpg";
 import Bicycle from "../images/Bicycle.jpg";
 import Guitar from "../images/Guitar.jpg";

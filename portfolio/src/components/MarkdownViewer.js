@@ -5,27 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import MarkdownDetails from "./MarkdownDetails"; // Adjust the path as needed
+import useMarkdownData from "../hooks/useMarkdownData";
 
 function MarkdownViewer({ files }) {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [markdownData, setMarkdownData] = useState("");
-
-  console.dir(files);
-  useEffect(() => {
-    const fetchMarkdownData = async () => {
-      if (selectedFile) {
-        const response = await fetch(selectedFile.download_url);
-        const data = await response.text();
-        setMarkdownData(data);
-        console.dir(data);
-      }
-    };
-
-    fetchMarkdownData();
-    console.dir(selectedFile);
-    console.dir(markdownData);
-  }, [selectedFile]);
+  const markdownData = useMarkdownData(selectedFile);
 
   // Transform files array
   const transformedFiles = files.map((file) => {
@@ -87,10 +71,15 @@ function MarkdownViewer({ files }) {
             Topic: {selectedFile.nameWithoutDate}
           </h1>
           <ReactMarkdown
-            urlTransform={(uri) =>
-              uri.startsWith("/")
-                ? `https://raw.githubusercontent.com/rbfl6418/rbfl6418.github.io/main${uri}`
-                : uri
+            // Use ReactMarkdown component to convert Markdown data to HTML
+            urlTransform={
+              (uri) =>
+                // urlTransform prop specifies a function to transform URLs
+                uri.startsWith("/")
+                  ? `https://raw.githubusercontent.com/rbfl6418/rbfl6418.github.io/main${uri}`
+                  : // If true, prepend the GitHub raw URL
+                    uri
+              // If false, return the URL as is
             }
           >
             {markdownData}

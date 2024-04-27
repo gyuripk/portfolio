@@ -4,38 +4,22 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Badge, Form, Input } from "reactstrap";
+import SearchBar from "./SearchBar";
+import useRepositories from "../hooks/useRepositories";
 
 const RepositorySearch = () => {
   const [input, setInput] = useState("");
-  const [results, setResults] = useState([]);
-  const [filteredRepositories, setFilteredRepositories] = useState([]);
   const githubUsername = "rbfl6418";
+  const [filteredRepositories, setFilteredRepositories] = useState([]);
+  const { repositories } = useRepositories(githubUsername);
 
-  const fetchRepositories = async () => {
-    try {
-      const response = await fetch(`https://api.github.com/user/repos`, {
-        headers: {
-          Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
-        },
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log(data);
-      setResults(data);
-      setFilteredRepositories(data);
-    } catch (error) {
-      console.error(
-        "An error occurred while fetching the repositories:",
-        error
-      );
-    }
-  };
+  useEffect(() => {
+    setFilteredRepositories(repositories);
+  }, [repositories]);
 
   const handleSearch = async () => {
     // Filter repositories based on input
-    const newFilteredRepositories = results.filter((repo) =>
+    const newFilteredRepositories = repositories.filter((repo) =>
       repo.name.toLowerCase().includes(input.toLowerCase())
     );
     setFilteredRepositories(newFilteredRepositories);
@@ -73,6 +57,7 @@ const RepositorySearch = () => {
     },
   ];
 
+  // Custom cell renderers for hyperlinks, dates, and status badges
   const components = {
     nameLinkRenderer: function NameLinkRenderer(props) {
       return (
@@ -97,10 +82,6 @@ const RepositorySearch = () => {
     ),
   };
 
-  useEffect(() => {
-    fetchRepositories();
-  }, []);
-
   // Calculate grid height based on row count
   const gridHeight = `${filteredRepositories.length * 43 + 50}px`;
 
@@ -124,25 +105,15 @@ const RepositorySearch = () => {
             marginBottom: "2%",
           }}
         >
-          <Form style={{ marginRight: "10px" }}>
-            <Input
-              type="text"
-              style={{ fontSize: "18px", width: "300px" }}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Search for repositories..."
-            />
-          </Form>
-          <Button
-            style={{ maxWidth: "100px" }}
-            variant="primary"
-            onClick={handleSearch}
-          >
-            Search
-          </Button>
+          <SearchBar
+            input={input}
+            setInput={setInput}
+            onSearch={handleSearch}
+          />
         </div>
+        {/* results table */}
         <div>
-          {filteredRepositories.length > 0 && (
+          {filteredRepositories.length > 0 ? (
             <div>
               <Badge color="primary" style={{ margin: "20px 10px" }}>
                 {filteredRepositories.length}
@@ -161,6 +132,10 @@ const RepositorySearch = () => {
                   }}
                 />
               </div>
+            </div>
+          ) : (
+            <div style={{ color: "red", fontSize: "20px" }}>
+              &#9888; No results found
             </div>
           )}
         </div>

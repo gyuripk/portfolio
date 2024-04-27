@@ -1,8 +1,7 @@
 // SpotifyPlaylist.js
 import React, { useState, useEffect } from "react";
-import useSpotifyAuth from "./spotifyAuth";
+import useSpotifyAuth from "../hooks/spotifyAuth";
 import "./SpotifyPlaylist.css";
-import { Container } from "reactstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function SpotifyPlaylist({
@@ -11,9 +10,11 @@ export default function SpotifyPlaylist({
   playlistId,
 }) {
   const [playlist, setPlaylist] = useState(null);
+  // request a token from the Spotify API
   const token = useSpotifyAuth(clientId, clientSecret);
 
   useEffect(() => {
+    // fetch the playlist data from the Spotify API
     const fetchPlaylist = async () => {
       if (!token) return;
       try {
@@ -30,7 +31,10 @@ export default function SpotifyPlaylist({
         console.log(data);
         console.log(playlist);
       } catch (err) {
-        console.error(err);
+        console.error(
+          "An error occurred while fetching the repositories:",
+          err
+        );
       }
     };
 
@@ -39,6 +43,7 @@ export default function SpotifyPlaylist({
 
   if (!playlist) return null;
 
+  //Formats the given duration in milliseconds into a string in the format "minutes:seconds".
   const formatDuration = (ms) => {
     const minutes = Math.floor(ms / 60000);
     const seconds = ((ms % 60000) / 1000).toFixed(0);
