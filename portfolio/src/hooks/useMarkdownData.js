@@ -5,13 +5,20 @@ function useMarkdownData(selectedFile) {
 
   useEffect(() => {
     const fetchMarkdownData = async () => {
-      if (selectedFile) {
-        const response = await fetch(selectedFile.download_url);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+      try {
+        if (selectedFile) {
+          const response = await fetch(selectedFile.download_url);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.text();
+          setMarkdownData(data);
         }
-        const data = await response.text();
-        setMarkdownData(data);
+      } catch (error) {
+        console.error(
+          "An error occurred while fetching the markdown data:",
+          error
+        );
       }
     };
 
