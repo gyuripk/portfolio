@@ -16,9 +16,18 @@ export function Header() {
       <span
         role="img"
         aria-label="house"
-        style={{ fontSize: "2rem", paddingLeft: "2rem" }}
+        style={{
+          display: "flex",
+          fontSize: "2rem",
+          paddingLeft: "2rem",
+          alignItems: "center",
+        }}
       >
-        🍊
+        <img
+          src={process.env.PUBLIC_URL + "/orange.png"}
+          alt="Orange"
+          style={{ width: "2rem", height: "2rem", margin: 0, padding: 0 }}
+        />
       </span>
       <Navigation />
       <ul className="social-icons">
