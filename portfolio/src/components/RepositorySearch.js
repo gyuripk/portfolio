@@ -6,12 +6,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Badge, Form, Input } from "reactstrap";
 import SearchBar from "./SearchBar";
 import useRepositories from "../hooks/useRepositories";
+import { Spinner } from "reactstrap"; // import Spinner component
 
 const RepositorySearch = () => {
-  const [input, setInput] = useState("");
   const githubUsername = "rbfl6418";
+  const [input, setInput] = useState("");
   const [filteredRepositories, setFilteredRepositories] = useState([]);
-  const { repositories } = useRepositories(githubUsername);
+  const { repositories, isLoading } = useRepositories(); // get isLoading from useRepositories
 
   useEffect(() => {
     setFilteredRepositories(repositories);
@@ -87,59 +88,63 @@ const RepositorySearch = () => {
 
   return (
     <div className="container">
-      <div
-        className="container"
-        style={{
-          marginTop: "5%",
-          marginBottom: "5%",
-          maxWidth: "1000px",
-        }}
-      >
-        <h2>GitHub Repositories</h2>
+      {isLoading ? (
+        <Spinner color="primary" /> // display Spinner when loading
+      ) : (
         <div
+          className="container"
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: "2%",
-            marginBottom: "2%",
+            marginTop: "5%",
+            marginBottom: "5%",
+            maxWidth: "1000px",
           }}
         >
-          <SearchBar
-            input={input}
-            setInput={setInput}
-            onSearch={handleSearch}
-          />
-        </div>
-        {/* results table */}
-        <div>
-          {filteredRepositories.length > 0 ? (
-            <div>
-              <Badge color="primary" style={{ margin: "20px 10px" }}>
-                {filteredRepositories.length}
-              </Badge>
-              Repositories found
-              <div
-                className="ag-theme-alpine"
-                style={{ height: gridHeight, width: "100%" }}
-              >
-                <AgGridReact
-                  rowData={filteredRepositories}
-                  columnDefs={columnDefs}
-                  components={components}
-                  defaultColDef={{
-                    cellStyle: { textAlign: "left" },
-                  }}
-                />
+          <h2>GitHub Repositories</h2>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: "2%",
+              marginBottom: "2%",
+            }}
+          >
+            <SearchBar
+              input={input}
+              setInput={setInput}
+              onSearch={handleSearch}
+            />
+          </div>
+          {/* results table */}
+          <div>
+            {filteredRepositories.length > 0 ? (
+              <div>
+                <Badge color="primary" style={{ margin: "20px 10px" }}>
+                  {filteredRepositories.length}
+                </Badge>
+                Repositories found
+                <div
+                  className="ag-theme-alpine"
+                  style={{ height: gridHeight, width: "100%" }}
+                >
+                  <AgGridReact
+                    rowData={filteredRepositories}
+                    columnDefs={columnDefs}
+                    components={components}
+                    defaultColDef={{
+                      cellStyle: { textAlign: "left" },
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          ) : (
-            <div style={{ color: "red", fontSize: "20px" }}>
-              &#9888; No results found
-            </div>
-          )}
+            ) : (
+              <div style={{ color: "red", fontSize: "20px" }}>
+                &#9888; No results found
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

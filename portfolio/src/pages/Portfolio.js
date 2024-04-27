@@ -1,6 +1,6 @@
 import React from "react";
 import YouTubeVideos from "../components/YouTubeVideos";
-import MarkdownList from "../components/MarkdownList"; // Assuming MarkdownList.js is in the same directory
+import MarkdownList from "../components/MarkdownList";
 import RepositorySearch from "../components/RepositorySearch";
 
 function Portfolio() {

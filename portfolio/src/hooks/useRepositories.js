@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 
 function useRepositories(githubUsername) {
   const [repositories, setRepositories] = useState([]);
-  //   const [filteredRepositories, setFilteredRepositories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // new state for loading status
 
   useEffect(() => {
     const fetchRepositories = async () => {
+      setIsLoading(true); // set loading status to true before fetching data
       try {
         const response = await fetch(`https://api.github.com/user/repos`, {
           headers: {
@@ -17,20 +18,20 @@ function useRepositories(githubUsername) {
         }
         const data = await response.json();
         setRepositories(data);
-        // setFilteredRepositories(data);
       } catch (error) {
         console.error(
           "An error occurred while fetching the repositories:",
           error
         );
+      } finally {
+        setIsLoading(false); // set loading status to false after fetching data
       }
     };
 
     fetchRepositories();
   }, []);
 
-  //   return { repositories, filteredRepositories, setFilteredRepositories };
-  return { repositories };
+  return { repositories, isLoading }; // return isLoading
 }
 
 export default useRepositories;

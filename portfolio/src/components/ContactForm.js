@@ -16,9 +16,68 @@ import {
 
 function ContactForm() {
   const [result, showResult] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [messageError, setMessageError] = useState("");
+
+  const validateEmail = (email) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  const validateName = (name) => {
+    const re = /^[A-Za-z]+$/;
+    return re.test(String(name));
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+    if (!validateName(event.target.value)) {
+      setNameError("Name is not valid");
+    } else {
+      setNameError("");
+    }
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    if (!validateEmail(event.target.value)) {
+      setEmailError("Email is not valid");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handleMessageChange = (event) => {
+    setMessage(event.target.value);
+    setMessageError("");
+  };
 
   const sendEmail = async (event) => {
     event.preventDefault();
+
+    if (message.trim() === "") {
+      setMessageError("Message cannot be empty");
+      return;
+    } else {
+      setMessageError("");
+    }
+
+    if (
+      nameError ||
+      emailError ||
+      messageError ||
+      !name ||
+      !email ||
+      !message
+    ) {
+      alert("Please enter valid values before submitting.");
+      return;
+    }
 
     try {
       const result = await emailjs.sendForm(
@@ -39,6 +98,12 @@ function ContactForm() {
 
   const handleClick = () => {
     showResult(false);
+    setName("");
+    setEmail("");
+    setMessage("");
+    setNameError("");
+    setEmailError("");
+    setMessageError("");
   };
 
   //when user clicks outside the form, the result message will disappear
@@ -75,7 +140,10 @@ function ContactForm() {
                 name="from_name"
                 id="name"
                 placeholder="Enter your name"
+                value={name}
+                onChange={handleNameChange}
               />
+              {nameError && <div className="error">{nameError}</div>}
             </FormGroup>
             <FormGroup className="form-group">
               <Label for="email">Email</Label>
@@ -84,7 +152,10 @@ function ContactForm() {
                 name="sender_email"
                 id="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={handleEmailChange}
               />
+              {emailError && <div className="error">{emailError}</div>}
             </FormGroup>
             <FormGroup className="form-group">
               <Label for="message">Message</Label>
@@ -93,7 +164,10 @@ function ContactForm() {
                 name="message"
                 id="message"
                 placeholder="Enter your message"
+                value={message}
+                onChange={handleMessageChange}
               />
+              {messageError && <div className="error">{messageError}</div>}
             </FormGroup>
             <Button className="contact-button">Submit</Button>
           </Form>

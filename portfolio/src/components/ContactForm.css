@@ -54,3 +54,11 @@
 .button:hover {
     background-color: #29691e;
 }
+
+.error {
+    color: red;
+}
+
+.error-message {
+    color: red;
+}
