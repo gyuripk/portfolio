@@ -9,7 +9,7 @@ import useMarkdownData from "../hooks/useMarkdownData";
 
 function MarkdownViewer({ files }) {
   const [selectedFile, setSelectedFile] = useState(null);
-  const markdownData = useMarkdownData(selectedFile);
+  const { markdownData, error } = useMarkdownData(selectedFile); // get a particular markdown file using the custom hook
 
   // Transform files array
   const transformedFiles = files.map((file) => {
@@ -34,6 +34,9 @@ function MarkdownViewer({ files }) {
   // Calculate grid height based on row count
   const gridHeight = `${transformedFiles.length * 34.4}px`;
 
+  if (error) {
+    return <div>Error: {error}</div>; // show the error message
+  }
   return (
     <div
       className="container"
@@ -47,6 +50,7 @@ function MarkdownViewer({ files }) {
         className="ag-theme-alpine"
         style={{ height: gridHeight, width: "100%", marginBottom: "50px" }}
       >
+        {/* Blog post table */}
         <AgGridReact
           rowData={transformedFiles}
           columnDefs={columnDefs}
@@ -59,6 +63,7 @@ function MarkdownViewer({ files }) {
         />
       </div>
       {selectedFile && (
+        // Display selected file content
         <div
           style={{
             padding: "10%",
@@ -70,6 +75,7 @@ function MarkdownViewer({ files }) {
           <h1 style={{ color: "#ff6600" }}>
             Topic: {selectedFile.nameWithoutDate}
           </h1>
+          {/* Display the selected markdown file content as HTML */}
           <ReactMarkdown
             // Use ReactMarkdown component to convert Markdown data to HTML
             urlTransform={

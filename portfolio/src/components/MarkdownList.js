@@ -6,9 +6,18 @@ function MarkdownList() {
   const repoName = "rbfl6418.github.io";
   const directory = "_posts";
 
-  const files = useMarkdownFiles(githubUsername, repoName, directory);
+  const { files, error } = useMarkdownFiles(
+    githubUsername,
+    repoName,
+    directory
+  ); // get markdown files using the custom hook
 
   console.log(files);
+
+  if (error) {
+    return <div>Error: {error}</div>; // show the error message
+  }
+
   return (
     <div className="container">
       <h2>Blog Posts</h2>

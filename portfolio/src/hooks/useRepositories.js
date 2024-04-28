@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 function useRepositories(githubUsername) {
   const [repositories, setRepositories] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // new state for loading status
+  const [error, setError] = useState(null); // new state for error message
 
   useEffect(() => {
     const fetchRepositories = async () => {
@@ -23,6 +24,7 @@ function useRepositories(githubUsername) {
           "An error occurred while fetching the repositories:",
           error
         );
+        setError(error.toString()); // save the error message
       } finally {
         setIsLoading(false); // set loading status to false after fetching data
       }
@@ -31,7 +33,7 @@ function useRepositories(githubUsername) {
     fetchRepositories();
   }, []);
 
-  return { repositories, isLoading }; // return isLoading
+  return { repositories, isLoading, error };
 }
 
 export default useRepositories;

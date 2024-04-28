@@ -9,17 +9,17 @@ import useRepositories from "../hooks/useRepositories";
 import { Spinner } from "reactstrap"; // import Spinner component
 
 const RepositorySearch = () => {
-  const githubUsername = "rbfl6418";
+  // const githubUsername = "rbfl6418";
   const [input, setInput] = useState("");
   const [filteredRepositories, setFilteredRepositories] = useState([]);
-  const { repositories, isLoading } = useRepositories(); // get isLoading from useRepositories
+  const { repositories, isLoading, error } = useRepositories(); // get repositories data using the custom hook
 
   useEffect(() => {
     setFilteredRepositories(repositories);
   }, [repositories]);
 
+  // Filter repositories based on input
   const handleSearch = async () => {
-    // Filter repositories based on input
     const newFilteredRepositories = repositories.filter((repo) =>
       repo.name.toLowerCase().includes(input.toLowerCase())
     );
@@ -85,6 +85,10 @@ const RepositorySearch = () => {
 
   // Calculate grid height based on row count
   const gridHeight = `${filteredRepositories.length * 43 + 50}px`;
+
+  if (error) {
+    return <div>Error: {error}</div>; // show the error message
+  }
 
   return (
     <div className="container">

@@ -5,7 +5,7 @@ function YouTubePlaylistVideos() {
   // API request to fetch YouTube videos
   const { videos, isLoading } = useYouTubeVideos(
     process.env.REACT_APP_YOUTUBE_PLAYLIST_ID
-  ); // get isLoading from useYouTubeVideos
+  ); // get youtube videos using the custom hook
 
   return (
     <div className="container" style={{ marginTop: "5%", marginBottom: "5%" }}>

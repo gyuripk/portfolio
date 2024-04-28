@@ -10,12 +10,12 @@ export default function SpotifyPlaylist({
   playlistId,
 }) {
   const [playlist, setPlaylist] = useState(null);
-  // request a token from the Spotify API
-  const token = useSpotifyAuth(clientId, clientSecret);
+  const [error, setError] = useState(null); // new state for error message
+  const token = useSpotifyAuth(clientId, clientSecret); // request a token from the Spotify API
 
   useEffect(() => {
-    // fetch the playlist data from the Spotify API
     const fetchPlaylist = async () => {
+      // fetch the playlist data from the Spotify API
       if (!token) return;
       try {
         const response = await fetch(
@@ -35,13 +35,20 @@ export default function SpotifyPlaylist({
           "An error occurred while fetching the repositories:",
           err
         );
+        setError(err.toString()); // save the error message
       }
     };
 
     fetchPlaylist();
   }, [token, playlistId]);
 
-  if (!playlist) return null;
+  if (error) {
+    return <div>Error: {error}</div>; // show the error message
+  }
+
+  if (!playlist) {
+    return <div>Playlist not found</div>; // show the message when playlist is not found
+  }
 
   //Formats the given duration in milliseconds into a string in the format "minutes:seconds".
   const formatDuration = (ms) => {

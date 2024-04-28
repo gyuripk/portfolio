@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 function useMarkdownFiles(githubUsername, repoName, directory) {
   const [files, setFiles] = useState([]);
+  const [error, setError] = useState(null); // new state for error message
 
   useEffect(() => {
     const fetchFiles = async () => {
@@ -29,6 +30,7 @@ function useMarkdownFiles(githubUsername, repoName, directory) {
         }
       } catch (error) {
         console.error("An error occurred while fetching the files:", error);
+        setError(error.toString()); // save the error message
       }
     };
 
@@ -36,7 +38,7 @@ function useMarkdownFiles(githubUsername, repoName, directory) {
   }, []); //request only once when the portfolio page renders
   //   }, [githubUsername, repoName, directory]);
   console.log(files);
-  return files;
+  return { files, error };
 }
 
 export default useMarkdownFiles;
